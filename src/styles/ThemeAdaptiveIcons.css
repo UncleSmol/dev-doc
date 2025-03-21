@@ -1,0 +1,29 @@
+/* Theme-adaptive icon styles */
+/* GitHub icon in tech section */
+.icon.github {
+  color: #181717; /* Default GitHub color in light mode */
+  transition: color 0.3s ease;
+}
+
+/* GitHub icon in contact section */
+.github-contact {
+  color: #181717; /* Default GitHub color in light mode */
+  transition: color 0.3s ease;
+}
+
+/* Dark mode styles */
+[data-theme='dark'] .icon.github,
+[data-theme='dark'] .github-contact {
+  color: #ffffff; /* White color in dark mode */
+}
+
+/* You can add similar rules for other icons that need theme adaptation */
+.social-link svg {
+  transition: color 0.3s ease;
+}
+
+[data-theme='dark'] .social-link svg {
+  color: #ffffff;
+}
+
+/* Import this CSS in your main App.css or index.css file */
