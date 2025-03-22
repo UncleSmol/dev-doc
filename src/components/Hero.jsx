@@ -1,15 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 // eslint-disable-next-line no-unused-vars
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub, FaNodeJs, 
   FaEnvelope, FaLinkedin, FaGithubSquare,
-  FaDatabase, FaBootstrap, FaCode
+  FaDatabase, FaBootstrap, FaCode, FaTimes
 } from 'react-icons/fa';
 import { SiTailwindcss, SiCodeium } from 'react-icons/si';
 import '../styles/ThemeAdaptiveIcons.css'; // Import the theme-adaptive CSS
+import '../styles/PricingPopup.css'; // Import the pricing popup styles
 
 const Hero = ({ isVisible, handleNavClick }) => {
+  // State for pricing popup
+  const [showPricing, setShowPricing] = useState(false);
+  
   // Refs for GSAP animations
   const heroRef = useRef(null);
   const titleRef = useRef(null);
@@ -20,6 +24,19 @@ const Hero = ({ isVisible, handleNavClick }) => {
   const contactRef = useRef(null);
   const imageRef = useRef(null);
   const techIconsRef = useRef(null);
+  const pricingPopupRef = useRef(null);
+
+  // Toggle pricing popup
+  const togglePricingPopup = () => {
+    setShowPricing(!showPricing);
+  };
+
+  // Close pricing popup when clicking outside
+  const handleBackdropClick = (e) => {
+    if (e.target.classList.contains('pricing-popup-overlay')) {
+      setShowPricing(false);
+    }
+  };
 
   // GSAP animations when component becomes visible
   useEffect(() => {
@@ -116,6 +133,32 @@ const Hero = ({ isVisible, handleNavClick }) => {
     }
   }, [isVisible]);
 
+  // Animation for pricing popup
+  useEffect(() => {
+    if (showPricing && pricingPopupRef.current) {
+      // Animate the popup when it opens
+      gsap.fromTo(
+        pricingPopupRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+      );
+      
+      // Animate each pricing package with a stagger effect
+      gsap.fromTo(
+        pricingPopupRef.current.querySelectorAll('.pricing-package'),
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.5, 
+          stagger: 0.1,
+          ease: "back.out(1.2)" 
+        },
+        0.2
+      );
+    }
+  }, [showPricing]);
+
   return (
     <section className="hero" style={{ display: isVisible ? 'block' : 'none' }} ref={heroRef}>
       <div className="container">
@@ -184,6 +227,9 @@ const Hero = ({ isVisible, handleNavClick }) => {
             <a href="#about" className="button secondary" onClick={(e) => handleNavClick('about', e)}>
               About Me
             </a>
+            {/* <button className="button secondary" onClick={togglePricingPopup}>
+              Work With Me?
+            </button> */}
           </div>
           
           {/* Contact section integrated into hero */}
@@ -216,6 +262,63 @@ const Hero = ({ isVisible, handleNavClick }) => {
           </div>
         </div>
       </div>
+      
+      {/* Pricing Popup */}
+      {showPricing && (
+        <div className="pricing-popup-overlay" onClick={handleBackdropClick}>
+          <div className="pricing-popup" ref={pricingPopupRef}>
+            <div className="pricing-popup-header">
+              <h2>My Services & Pricing</h2>
+              <button className="close-popup" onClick={togglePricingPopup}>
+                <FaTimes />
+              </button>
+            </div>
+            <div className="pricing-popup-content">
+              <div className="pricing-package basic">
+                <h3>Basic Package</h3>
+                <div className="package-price">$XXX</div>
+                <ul className="package-features">
+                  <li>Feature 1</li>
+                  <li>Feature 2</li>
+                  <li>Feature 3</li>
+                  <li>Feature 4</li>
+                </ul>
+                <button className="package-cta">Get Started</button>
+              </div>
+              
+              <div className="pricing-package standard">
+                <div className="popular-tag">Most Popular</div>
+                <h3>Standard Package</h3>
+                <div className="package-price">$XXX</div>
+                <ul className="package-features">
+                  <li>Everything in Basic</li>
+                  <li>Feature 5</li>
+                  <li>Feature 6</li>
+                  <li>Feature 7</li>
+                  <li>Feature 8</li>
+                </ul>
+                <button className="package-cta">Get Started</button>
+              </div>
+              
+              <div className="pricing-package premium">
+                <h3>Premium Package</h3>
+                <div className="package-price">$XXX</div>
+                <ul className="package-features">
+                  <li>Everything in Standard</li>
+                  <li>Feature 9</li>
+                  <li>Feature 10</li>
+                  <li>Feature 11</li>
+                  <li>Feature 12</li>
+                </ul>
+                <button className="package-cta">Get Started</button>
+              </div>
+            </div>
+            <div className="pricing-popup-footer">
+              <p>Custom packages available upon request. <a href="mailto:dev.doc@outlook.com">Contact me</a> for more information.</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

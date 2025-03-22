@@ -62,6 +62,10 @@
   background-image: url('https://cdn.pixabay.com/photo/2017/06/09/22/56/lady-justice-2388500_960_720.jpg');
 }
 
+.physio-image{
+  background-image: url('https://cdn.pixabay.com/photo/2021/06/13/09/29/stones-6332720_1280.jpg');
+}
+
 .project-content {
   padding: 1.5rem;
 }
@@ -83,7 +87,7 @@
   font-weight: 500;
 }
 
-.project-badge.renewable, .project-badge.environmental, .project-badge.portfolio {
+.project-badge.renewable, .project-badge.environmental, .project-badge.portfolio, .project-badge.healthcare {
   background-color: rgba(16, 185, 129, 0.2);
   color: #10b981;
 }

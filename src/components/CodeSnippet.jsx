@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { FaTimes, FaCopy } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import '../styles/CodeSnippet.css';
@@ -52,15 +52,15 @@ const CodeSnippet = ({ code, title, language, onClose }) => {
     }
   };
   
-  // Close modal with animation
-  const closeModal = () => {
+  // Close modal with animation - wrapped in useCallback
+  const closeModal = useCallback(() => {
     gsap.to(contentRef.current, {
       opacity: 0,
       y: -20,
       duration: 0.3,
       onComplete: onClose
     });
-  };
+  }, [onClose]);
   
   // Handle escape key press
   useEffect(() => {
@@ -82,7 +82,7 @@ const CodeSnippet = ({ code, title, language, onClose }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, [closeModal]);
   
   return (
     <div className="code-snippet-modal" ref={modalRef} onClick={handleBackdropClick}>

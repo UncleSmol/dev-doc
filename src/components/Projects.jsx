@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { 
   FaReact, FaJs, FaCss3Alt, FaHtml5, 
   FaExternalLinkAlt, FaGithub, FaCode, FaLightbulb, FaSolarPanel,
-  FaRecycle, FaHotel, FaPortrait
+  FaRecycle, FaHotel, FaHospital, FaPortrait
 } from 'react-icons/fa';
 import CodeSnippet from './CodeSnippet';
 import '../styles/Projects.css';
@@ -423,6 +423,58 @@ const animateSections = () => {
     gap: 1.5rem;
   }
 }`,
+    myphysioAnimation: `// Initialize animations on component mount
+useEffect(() => {
+  // Simple fade-in for header
+  gsap.fromTo(headerRef.current,
+    { opacity: 0, y: -30 },
+    { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+  );
+
+  // Simple fade-in for sections
+  sectionsRef.current.forEach((section) => {
+    gsap.fromTo(section,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 90%", // Start when top of section is 90% from top of viewport
+          end: "top 10%", // End when top of section is 10% from top of viewport
+          toggleActions: "play none none none" // Play once when entering
+        }
+      }
+    );
+  });
+})`,
+    myphysioContact: `<div className="contact-card">
+  <div className="contact-card-header">
+    <FaPhone className="contact-icon" />
+    <h2>Phone Us</h2>
+  </div>
+  <div className="contact-card-content">
+    <a href="tel:+27000000000" className="contact-link">000-000-0000</a>
+    <a href="tel:+27000000000" className="contact-link">000-000-0000</a>
+  </div>
+</div>`,
+    myphysioHours: `<div ref={addToSectionsRef} className="contact-hours-section">
+  <div className="hours-card">
+    <h2>Practice Hours</h2>
+    <div className="hours-grid">
+      <div className="hours-day">
+        <span className="day">Monday - Friday</span>
+        <span className="time">8:00 AM - 5:00 PM</span>
+      </div>
+      <div className="hours-day">
+        <span className="day">Saturday</span>
+        <span className="time">By Appointment</span>
+      </div>
+    </div>
+  </div>
+</div>`,
   };
 
   return (
@@ -562,6 +614,58 @@ const animateSections = () => {
                 </button>
                 <button onClick={() => handleShowSnippet('portfolioCSS')} className="project-link snippet-btn">
                   <FaCss3Alt /> CSS Snippet
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* MyPhysio Project */}
+          <div className="project-card" ref={addToProjectCardsRef}>
+            <div className="project-image physio-image">
+              {/* Image will be set via CSS background */}
+            </div>
+            <div className="project-content">
+              <div className="project-header">
+                <h3 className="project-title">MyPhysio Management System</h3>
+                <div className="project-badge healthcare">
+                  <FaHospital /> Healthcare
+                </div>
+              </div>
+              <p className="project-description">
+                A comprehensive physiotherapy practice management system with integrated contact functionality, 
+                appointment scheduling, and patient management. Features a clean, professional design with 
+                intuitive navigation.
+              </p>
+              <div className="project-features">
+                <h4>Key Features:</h4>
+                <ul>
+                  <li>Responsive mobile-first design</li>
+                  <li>Interactive service showcase</li>
+                  <li>Online booking system</li>
+                  <li>Patient information portal</li>
+                  <li>Practice hours and contact information</li>
+                </ul>
+              </div>
+              <div className="project-technologies">
+                <div className="tech-tag"><FaReact /> React</div>
+                <div className="tech-tag"><FaJs /> JavaScript</div>
+                <div className="tech-tag"><FaCss3Alt /> CSS3</div>
+              </div>
+              <div className="project-links">
+                <a href="https://unclesmol.github.io/myphysio/" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <FaExternalLinkAlt /> Live Preview
+                </a>
+                <a href="https://github.com/UncleSmol/myphysio" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <FaGithub /> GitHub Repo
+                </a>
+                <button onClick={() => handleShowSnippet('myphysioAnimation')} className="project-link snippet-btn">
+                  <FaLightbulb /> Animation Snippet
+                </button>
+                <button onClick={() => handleShowSnippet('myphysioContact')} className="project-link snippet-btn">
+                  <FaCode /> Contact Component
+                </button>
+                <button onClick={() => handleShowSnippet('myphysioHours')} className="project-link snippet-btn">
+                  <FaHospital /> Hours Component
                 </button>
               </div>
             </div>
