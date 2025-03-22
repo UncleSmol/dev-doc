@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/dev-doc/static/css/main.23024282.css",
+    "main.js": "/dev-doc/static/js/main.929ee8ed.js",
+    "static/js/453.05e3bebf.chunk.js": "/dev-doc/static/js/453.05e3bebf.chunk.js",
+    "static/media/dev-doc-logo.svg": "/dev-doc/static/media/dev-doc-logo.de797792e2f0976ba27c3a47cbad631e.svg",
+    "index.html": "/dev-doc/index.html",
+    "main.23024282.css.map": "/dev-doc/static/css/main.23024282.css.map",
+    "main.929ee8ed.js.map": "/dev-doc/static/js/main.929ee8ed.js.map",
+    "453.05e3bebf.chunk.js.map": "/dev-doc/static/js/453.05e3bebf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23024282.css",
+    "static/js/main.929ee8ed.js"
+  ]
+}
