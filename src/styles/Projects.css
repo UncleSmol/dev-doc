@@ -58,6 +58,10 @@
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
 }
 
+.portfolio-image{
+  background-image: url('https://cdn.pixabay.com/photo/2017/06/09/22/56/lady-justice-2388500_960_720.jpg');
+}
+
 .project-content {
   padding: 1.5rem;
 }
@@ -79,15 +83,12 @@
   font-weight: 500;
 }
 
-.project-badge.renewable {
+.project-badge.renewable, .project-badge.environmental, .project-badge.portfolio {
   background-color: rgba(16, 185, 129, 0.2);
   color: #10b981;
 }
 
-.project-badge.environmental {
-  background-color: rgba(5, 150, 105, 0.2);
-  color: #059669;
-}
+
 
 .project-title {
   font-size: 1.5rem;

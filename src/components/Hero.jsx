@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+// eslint-disable-next-line no-unused-vars
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub, FaNodeJs, 
-  FaEnvelope, FaLinkedin, FaTwitter, FaGithubSquare,
+  FaEnvelope, FaLinkedin, FaGithubSquare,
   FaDatabase, FaBootstrap, FaCode
 } from 'react-icons/fa';
 import { SiTailwindcss, SiCodeium } from 'react-icons/si';
@@ -119,7 +120,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
     <section className="hero" style={{ display: isVisible ? 'block' : 'none' }} ref={heroRef}>
       <div className="container">
         <div className="hero-content">
-          <h1 ref={titleRef}>Ntsako Doctor Khoza</h1>
+          <h1 ref={titleRef}>NTSAKO 'DOC' KHOZA</h1>
           <h2 ref={subtitleRef}>Frontend Developer</h2>
           <p className="hero-description" ref={descriptionRef}>
             I create engaging web applications, systems, and websites with a focus on user experience and modern technologies.
@@ -189,27 +190,27 @@ const Hero = ({ isVisible, handleNavClick }) => {
           <div className="hero-contact" ref={contactRef}>
             <h3>Get In Touch</h3>
             <div className="contact-icons">
-              <a href="mailto:ntsako@example.com" className="contact-icon">
+              <a href="mailto:dev.doc@outlook.com" className="contact-icon">
                 <FaEnvelope />
                 <span>Email</span>
               </a>
-              <a href="https://linkedin.com/in/ntsakodoctorkhoza" className="contact-icon">
+              <a href="https://www.linkedin.com/in/ntsako-khoza-a42a08356/" className="contact-icon">
                 <FaLinkedin />
                 <span>LinkedIn</span>
               </a>
-              <a href="https://github.com/dev-doc" className="contact-icon">
+              <a href="https://github.com/UncleSmol" className="contact-icon">
                 <FaGithubSquare className="github-contact" />
                 <span>GitHub</span>
               </a>
-              <a href="https://twitter.com/devdoc" className="contact-icon">
+              {/* <a href="https://twitter.com/devdoc" className="contact-icon">
                 <FaTwitter />
                 <span>Twitter</span>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
         <div className="hero-image" ref={imageRef}>
-          {/* You can add your profile image here */}
+          {/* profile image goes here */}
           <div className="profile-placeholder">
             <span className="accent">NK</span>
           </div>

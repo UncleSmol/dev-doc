@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -8,14 +8,14 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-logo">DEV DOC</div>
           <div className="footer-social">
-            <a href="https://github.com/dev-doc" className="social-link">
+            <a href="https://github.com/UncleSmol" className="social-link">
               <FaGithub /> GitHub
             </a>
-            <a href="https://linkedin.com/in/ntsakodoctorkhoza" className="social-link">
+            <a href="https://www.linkedin.com/in/ntsako-khoza-a42a08356/" className="social-link">
               <FaLinkedin /> LinkedIn
             </a>
-            <a href="https://twitter.com/devdoc" className="social-link">
-              <FaTwitter /> Twitter
+            <a href="mailto:dev.doc@outlook.com" className="social-link">
+              <FaEnvelope /> Mail
             </a>
           </div>
         </div>

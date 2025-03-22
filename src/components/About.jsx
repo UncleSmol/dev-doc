@@ -70,19 +70,21 @@ const About = ({ isVisible, handleNavClick }) => {
         "-=0.4"
       );
       
-      // Animate the stats
-      tl.fromTo(
-        statsRef.current.querySelectorAll('.stat'),
-        { opacity: 0, scale: 0.8 },
-        { 
-          opacity: 1, 
-          scale: 1, 
-          duration: 0.5, 
-          stagger: 0.15, 
-          ease: "back.out(1.7)" 
-        },
-        "-=0.2"
-      );
+      // Animate the stats if statsRef.current exists
+      if (statsRef.current) {
+        tl.fromTo(
+          statsRef.current.querySelectorAll('.stat'),
+          { opacity: 0, scale: 0.8 },
+          { 
+            opacity: 1, 
+            scale: 1, 
+            duration: 0.5, 
+            stagger: 0.15, 
+            ease: "back.out(1.7)" 
+          },
+          "-=0.2"
+        );
+      }
       
       // Animate each section with stagger
       tl.fromTo(
@@ -160,6 +162,24 @@ const About = ({ isVisible, handleNavClick }) => {
     });
   }, [expandedSections]);
 
+  // Add null check for statsRef
+  useEffect(() => {
+    if (isVisible && statsRef.current) {
+      // Animate the stats
+      gsap.fromTo(
+        statsRef.current.querySelectorAll('.stat'),
+        { opacity: 0, scale: 0.8 },
+        { 
+          opacity: 1, 
+          scale: 1, 
+          duration: 0.5, 
+          stagger: 0.15, 
+          ease: "back.out(1.7)" 
+        }
+      );
+    }
+  }, [isVisible]);
+
   return (
     <section id="about" className="section" style={{ display: isVisible ? 'block' : 'none' }} ref={aboutRef}>
       <div className="container">
@@ -175,7 +195,7 @@ const About = ({ isVisible, handleNavClick }) => {
             </p>
           </div>
           
-          <div className="about-stats" ref={statsRef}>
+          {/* <div className="about-stats" ref={statsRef}>
             <div className="stat">
               <span className="stat-number accent">3+</span>
               <span className="stat-label">Years Experience</span>
@@ -188,7 +208,7 @@ const About = ({ isVisible, handleNavClick }) => {
               <span className="stat-number accent">15+</span>
               <span className="stat-label">Happy Clients</span>
             </div>
-          </div>
+          </div> */}
         </div>
         
         {/* Personal Background */}
@@ -331,10 +351,10 @@ const About = ({ isVisible, handleNavClick }) => {
         
         <div className="section-navigation" ref={navigationRef}>
           <button className="nav-button prev" onClick={(e) => handleNavClick('hero', e)}>
-            Back to Home
+            Back to HUB
           </button>
           <button className="nav-button next" onClick={(e) => handleNavClick('projects', e)}>
-            View Projects
+            View MY WORK
           </button>
         </div>
       </div>

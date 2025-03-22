@@ -94,6 +94,7 @@
 /* Portfolio project */
 .project {
   margin-bottom: var(--space-xl);
+  
 }
 
 .project__image {

@@ -1,9 +1,11 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+// eslint-disable-next-line no-unused-vars
 import { 
-  FaReact, FaNodeJs, FaDatabase, FaJs, FaCss3Alt, FaHtml5, 
+  FaReact, FaJs, FaCss3Alt, FaHtml5, 
   FaExternalLinkAlt, FaGithub, FaCode, FaLightbulb, FaSolarPanel,
-  FaRecycle, FaLeaf, FaHotel
+  FaRecycle, FaHotel, FaPortrait
 } from 'react-icons/fa';
 import CodeSnippet from './CodeSnippet';
 import '../styles/Projects.css';
@@ -278,7 +280,149 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-}`
+});`,
+    portfolioReact: `// React component for portfolio project
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+const PortfolioItem = ({ project }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div 
+      className="portfolio-item"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="portfolio-image">
+        <img src={project.image} alt={project.title} />
+        
+        <motion.div 
+          className="portfolio-overlay"
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <h3>{project.title}</h3>
+          <p>{project.shortDesc}</p>
+          <div className="portfolio-actions">
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+              View Live
+            </a>
+            <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
+              View Code
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default PortfolioItem;`,
+    portfolioAnimation: `// GSAP animations for Harvey Nortje portfolio
+const animateSections = () => {
+  // Animate hero section
+  gsap.timeline()
+    .fromTo('.hero-content h1', 
+      { opacity: 0, y: -50 }, 
+      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+    )
+    .fromTo('.hero-content p', 
+      { opacity: 0 }, 
+      { opacity: 1, duration: 0.8, ease: "power3.out" }, 
+      "-=0.4"
+    )
+    .fromTo('.hero-cta', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 
+      "-=0.4"
+    );
+  
+  // Animate sections on scroll
+  const sections = document.querySelectorAll('.section');
+  
+  sections.forEach(section => {
+    gsap.fromTo(section, 
+      { opacity: 0, y: 50 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+  });
+};`,
+    portfolioCSS: `/* Styling for Harvey Nortje portfolio */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.skill-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.skill-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #4a6cf7;
+}
+
+.skill-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1d2130;
+}
+
+.skill-description {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .skill-card {
+    background-color: #1f2937;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .skill-title {
+    color: #f3f4f6;
+  }
+  
+  .skill-description {
+    color: #d1d5db;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}`,
   };
 
   return (
@@ -374,26 +518,51 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
 
-          {/* Task Management Project */}
+          {/* Harvey Nortje Portfolio Project */}
           <div className="project-card" ref={addToProjectCardsRef}>
-            <div className="project-image task-image"></div>
+            <div className="project-image portfolio-image">
+              {/* Image will be set via CSS background */}
+            </div>
             <div className="project-content">
-              <h3 className="project-title">Task Management System</h3>
+              <div className="project-header">
+                <h3 className="project-title">Harvey Nortje Portfolio</h3>
+                <div className="project-badge portfolio">
+                  <FaPortrait /> Business Portfolio
+                </div>
+              </div>
               <p className="project-description">
-                A comprehensive task management application with real-time updates and team collaboration features.
+                A modern React-based portfolio website showcasing Harvey Nortje's skills, projects, and professional experience with smooth animations and responsive design.
               </p>
+              <div className="project-features">
+                <h4>Key Features:</h4>
+                <ul>
+                  <li>Interactive UI with smooth transitions</li>
+                  <li>Responsive layout for all devices</li>
+                  <li>Project showcase with detailed information</li>
+                  <li>Contact form with validation</li>
+                </ul>
+              </div>
               <div className="project-technologies">
-                <div className="tech-tag"><FaJs /> Vue.js</div>
-                <div className="tech-tag"><FaDatabase /> Firebase</div>
-                <div className="tech-tag"><FaCss3Alt /> CSS Grid</div>
+                <div className="tech-tag"><FaReact /> React</div>
+                <div className="tech-tag"><FaJs /> JavaScript</div>
+                <div className="tech-tag"><FaCss3Alt /> CSS3</div>
               </div>
               <div className="project-links">
-                <a href="https://example.com/task-management" className="project-link">
-                  <FaExternalLinkAlt /> View Project
+                <a href="https://unclesmol.github.io/harvey-nortje/" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <FaExternalLinkAlt /> Live Preview
                 </a>
-                <a href="https://github.com/dev-doc/task-management" className="project-link">
-                  <FaGithub /> Source Code
+                <a href="https://github.com/UncleSmol/harvey-nortje" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <FaGithub /> GitHub Repo
                 </a>
+                <button onClick={() => handleShowSnippet('portfolioReact')} className="project-link snippet-btn">
+                  <FaCode /> React Component
+                </button>
+                <button onClick={() => handleShowSnippet('portfolioAnimation')} className="project-link snippet-btn">
+                  <FaLightbulb /> Animation Snippet
+                </button>
+                <button onClick={() => handleShowSnippet('portfolioCSS')} className="project-link snippet-btn">
+                  <FaCss3Alt /> CSS Snippet
+                </button>
               </div>
             </div>
           </div>
@@ -401,10 +570,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div className="section-navigation">
           <button className="nav-button prev" onClick={(e) => handleNavClick('about', e)}>
-            Back to About
+            Back to BIO
           </button>
           <button className="nav-button next" onClick={(e) => handleNavClick('hero', e)}>
-            Back to Home
+            Back to HUB
           </button>
         </div>
       </div>
@@ -417,9 +586,19 @@ document.addEventListener('DOMContentLoaded', function() {
             activeSnippet === 'responsive' ? 'Responsive CSS for MTAP Group' : 
             activeSnippet === 'animation' ? 'Animation JavaScript for MTAP Group' :
             activeSnippet === 'villaRomaCSS' ? 'Waste Categories Styling for Villa Roma' :
-            'Interactive Features for Villa Roma Manual'
+            activeSnippet === 'villaRomaJS' ? 'Interactive Features for Villa Roma Manual' :
+            activeSnippet === 'portfolioReact' ? 'React Component for Portfolio Project' :
+            activeSnippet === 'portfolioAnimation' ? 'GSAP Animations for Harvey Nortje Portfolio' :
+            activeSnippet === 'portfolioCSS' ? 'CSS Styling for Harvey Nortje Portfolio' :
+            'Code Snippet'
           }
-          language={activeSnippet && (activeSnippet.includes('CSS') || activeSnippet === 'responsive') ? 'css' : 'javascript'}
+          language={
+            activeSnippet && (
+              activeSnippet.includes('CSS') || 
+              activeSnippet === 'responsive' || 
+              activeSnippet === 'portfolioCSS'
+            ) ? 'css' : 'javascript'
+          }
           onClose={() => setShowSnippet(false)}
         />
       )}
