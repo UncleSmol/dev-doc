@@ -16,58 +16,70 @@
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .project-image {
-  height: 220px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 200px;
+  position: relative;
   border-bottom: 1px solid var(--border-color);
 }
 
-/* MTAP Group project image */
+.project-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-image::after {
+  opacity: 1;
+}
+
+/* Project image classes */
 .mtap-image {
-  background-image: url('https://images.pexels.com/photos/8853499/pexels-photo-8853499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'), linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #0a192f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-image: url('https://images.pexels.com/photos/8853499/pexels-photo-8853499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+
 }
 
 .ecommerce-image {
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
 }
 
-/* Waste Management project image */
 .waste-management-image {
-  background-image: url('https://images.pexels.com/photos/802221/pexels-photo-802221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'), linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #1a472a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-image: url('https://images.pexels.com/photos/802221/pexels-photo-802221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+
 }
 
 .task-image {
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
 }
 
-.portfolio-image{
+.harvey-nortje-image {
   background-image: url('https://cdn.pixabay.com/photo/2017/06/09/22/56/lady-justice-2388500_960_720.jpg');
 }
 
-.physio-image{
+.physio-image {
   background-image: url('https://cdn.pixabay.com/photo/2021/06/13/09/29/stones-6332720_1280.jpg');
 }
 
 .project-content {
   padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-header {
@@ -84,12 +96,29 @@
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-.project-badge.renewable, .project-badge.environmental, .project-badge.portfolio, .project-badge.healthcare {
-  background-color: rgba(16, 185, 129, 0.2);
-  color: #10b981;
+/* Badge types with distinct colors */
+.project-badge.renewable {
+  background-color: rgba(13, 138, 34, 0.2);
+  color: #0d8a22;
+}
+
+.project-badge.environmental {
+  background-color: rgba(0, 112, 243, 0.2);
+  color: #0070f3;
+}
+
+.project-badge.portfolio {
+  background-color: rgba(255, 140, 0, 0.2);
+  color: #ff8c00;
+}
+
+.project-badge.healthcare {
+  background-color: rgba(233, 30, 99, 0.2);
+  color: #e91e63;
 }
 
 
@@ -148,9 +177,12 @@
 }
 
 .project-links {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
+  grid-auto-rows: 2fr;
   gap: 1rem;
+  margin-top: auto;
 }
 
 .project-link {
@@ -169,6 +201,7 @@
 .project-link:hover {
   background-color: var(--color-text-accent);
   color: white;
+  transform: translateY(-2px);
 }
 
 .snippet-btn {
@@ -216,6 +249,21 @@
 @media (min-width: 768px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .project-header {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-header {
+    flex-direction: column;
+  }
+  
+  .project-badge {
+    margin-top: 0.5rem;
+    align-self: flex-start;
   }
 }
 

@@ -4,7 +4,8 @@ import { gsap } from 'gsap';
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub, FaNodeJs, 
   FaEnvelope, FaLinkedin, FaGithubSquare,
-  FaDatabase, FaBootstrap, FaCode, FaTimes
+  FaDatabase, FaBootstrap, FaCode, FaTimes,
+  FaFileExcel, FaPhone
 } from 'react-icons/fa';
 import { SiTailwindcss, SiCodeium } from 'react-icons/si';
 import '../styles/ThemeAdaptiveIcons.css'; // Import the theme-adaptive CSS
@@ -13,6 +14,7 @@ import '../styles/PricingPopup.css'; // Import the pricing popup styles
 const Hero = ({ isVisible, handleNavClick }) => {
   // State for pricing popup
   const [showPricing, setShowPricing] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState(null);
   
   // Refs for GSAP animations
   const heroRef = useRef(null);
@@ -25,16 +27,102 @@ const Hero = ({ isVisible, handleNavClick }) => {
   const imageRef = useRef(null);
   const techIconsRef = useRef(null);
   const pricingPopupRef = useRef(null);
+  const packageDetailsRef = useRef(null);
 
   // Toggle pricing popup
   const togglePricingPopup = () => {
     setShowPricing(!showPricing);
+    if (selectedPackage) setSelectedPackage(null);
+  };
+
+  // View package details
+  const viewPackageDetails = (packageType) => {
+    setSelectedPackage(packageType);
+  };
+
+  // Close package details
+  const closePackageDetails = (e) => {
+    if (e) e.stopPropagation();
+    setSelectedPackage(null);
   };
 
   // Close pricing popup when clicking outside
   const handleBackdropClick = (e) => {
     if (e.target.classList.contains('pricing-popup-overlay')) {
       setShowPricing(false);
+      setSelectedPackage(null);
+    } else if (e.target.classList.contains('package-details-overlay')) {
+      closePackageDetails();
+    }
+  };
+
+  // Define pricing packages data
+  const pricingPackages = {
+    landing: {
+      type: "basic",
+      title: "Landing Page",
+      price: "R2,500",
+      features: [
+        "Single Page Design",
+        "Mobile Responsive",
+        "Contact Form",
+        "Basic SEO Setup",
+        "1 Revision Round",
+        "Fast Loading Time",
+        "Custom Domain Setup"
+      ]
+    },
+    business: {
+      type: "standard",
+      title: "Business Website",
+      price: "R5,500",
+      features: [
+        "Up to 5 Pages",
+        "Mobile Responsive",
+        "Contact Form",
+        "Standard SEO Setup",
+        "Social Media Integration",
+        "Basic Business Logic",
+        "2 Revision Rounds",
+        "1 Month Support",
+        "Google Analytics Setup"
+      ]
+    },
+    custom: {
+      type: "premium",
+      title: "Custom Website",
+      price: "R7,000+",
+      features: [
+        "Full Fledged Fullstack",
+        "Custom Design & Logic",
+        "Security Implementations",
+        "Advanced SEO",
+        "Content Management System",
+        "Performance Optimization",
+        "3 Revision Rounds",
+        "3 Months Support",
+        "Database Integration",
+        "User Authentication"
+      ]
+    },
+    hybrid: {
+      type: "hybrid",
+      title: "Hybrid Package",
+      price: "50% off first month",
+      monthlyPrice: "then R1,200/month",
+      popular: true,
+      features: [
+        "Unlimited Revisions",
+        "Free Maintenance",
+        "Priority Support",
+        "Unlimited Custom Designs",
+        "Unlimited Business Logic",
+        "Unlimited Support",
+        "Monthly Performance Reports",
+        "SEO Optimization",
+        "24/7 Emergency Support"
+      ],
+      note: "This is a 24-month partnership agreement that provides ongoing development and support. Perfect for businesses looking for a long-term technology partner rather than a one-time service."
     }
   };
 
@@ -144,20 +232,34 @@ const Hero = ({ isVisible, handleNavClick }) => {
       );
       
       // Animate each pricing package with a stagger effect
-      gsap.fromTo(
-        pricingPopupRef.current.querySelectorAll('.pricing-package'),
-        { opacity: 0, y: 30 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.5, 
-          stagger: 0.1,
-          ease: "back.out(1.2)" 
-        },
-        0.2
-      );
+      const packages = pricingPopupRef.current.querySelectorAll('.pricing-package');
+      
+      if (packages.length > 0) {
+        gsap.fromTo(
+          packages,
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.5, 
+            stagger: 0.1,
+            ease: "back.out(1.2)" 
+          }
+        );
+      }
     }
   }, [showPricing]);
+
+  // Animation for package details
+  useEffect(() => {
+    if (selectedPackage && packageDetailsRef.current) {
+      gsap.fromTo(
+        packageDetailsRef.current,
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }
+      );
+    }
+  }, [selectedPackage]);
 
   return (
     <section className="hero" style={{ display: isVisible ? 'block' : 'none' }} ref={heroRef}>
@@ -166,7 +268,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
           <h1 ref={titleRef}>NTSAKO 'DOC' KHOZA</h1>
           <h2 ref={subtitleRef}>Frontend Developer</h2>
           <p className="hero-description" ref={descriptionRef}>
-            I create engaging web applications, systems, and websites with a focus on user experience and modern technologies.
+            Hello, I create engaging web applications, systems, and websites with a focus on user experience and modern technologies.
           </p>
           
           {/* Skills section integrated into hero */}
@@ -217,6 +319,10 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <FaDatabase className="icon sql" />
                 <span>SQL</span>
               </div>
+              <div className="tech-icon">
+                <FaFileExcel className="icon excel" />
+                <span>VBA</span>
+              </div>
             </div>
           </div>
           
@@ -227,9 +333,9 @@ const Hero = ({ isVisible, handleNavClick }) => {
             <a href="#about" className="button secondary" onClick={(e) => handleNavClick('about', e)}>
               About Me
             </a>
-            {/* <button className="button secondary" onClick={togglePricingPopup}>
+            <button className="button secondary" onClick={togglePricingPopup}>
               Work With Me?
-            </button> */}
+            </button>
           </div>
           
           {/* Contact section integrated into hero */}
@@ -248,10 +354,10 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <FaGithubSquare className="github-contact" />
                 <span>GitHub</span>
               </a>
-              {/* <a href="https://twitter.com/devdoc" className="contact-icon">
-                <FaTwitter />
-                <span>Twitter</span>
-              </a> */}
+              <a href="tel:+27797682474" className="contact-icon">
+                <FaPhone />
+                <span>0797682474</span>
+              </a>
             </div>
           </div>
         </div>
@@ -274,48 +380,104 @@ const Hero = ({ isVisible, handleNavClick }) => {
               </button>
             </div>
             <div className="pricing-popup-content">
-              <div className="pricing-package basic">
-                <h3>Basic Package</h3>
-                <div className="package-price">$XXX</div>
+              {/* Landing Page Package */}
+              <div className={`pricing-package ${pricingPackages.landing.type}`}>
+                <h3>{pricingPackages.landing.title}</h3>
+                <div className="package-price">{pricingPackages.landing.price}</div>
                 <ul className="package-features">
-                  <li>Feature 1</li>
-                  <li>Feature 2</li>
-                  <li>Feature 3</li>
-                  <li>Feature 4</li>
+                  {pricingPackages.landing.features.slice(0, 4).map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
                 </ul>
+                <button className="view-details-btn" onClick={() => viewPackageDetails('landing')}>
+                  View Details
+                </button>
                 <button className="package-cta">Get Started</button>
               </div>
               
-              <div className="pricing-package standard">
-                <div className="popular-tag">Most Popular</div>
-                <h3>Standard Package</h3>
-                <div className="package-price">$XXX</div>
+              {/* Business Website Package */}
+              <div className={`pricing-package ${pricingPackages.business.type}`}>
+                <h3>{pricingPackages.business.title}</h3>
+                <div className="package-price">{pricingPackages.business.price}</div>
                 <ul className="package-features">
-                  <li>Everything in Basic</li>
-                  <li>Feature 5</li>
-                  <li>Feature 6</li>
-                  <li>Feature 7</li>
-                  <li>Feature 8</li>
+                  {pricingPackages.business.features.slice(0, 4).map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
                 </ul>
+                <button className="view-details-btn" onClick={() => viewPackageDetails('business')}>
+                  View Details
+                </button>
                 <button className="package-cta">Get Started</button>
               </div>
               
-              <div className="pricing-package premium">
-                <h3>Premium Package</h3>
-                <div className="package-price">$XXX</div>
+              {/* Custom Website Package */}
+              <div className={`pricing-package ${pricingPackages.custom.type}`}>
+                <h3>{pricingPackages.custom.title}</h3>
+                <div className="package-price">{pricingPackages.custom.price}</div>
                 <ul className="package-features">
-                  <li>Everything in Standard</li>
-                  <li>Feature 9</li>
-                  <li>Feature 10</li>
-                  <li>Feature 11</li>
-                  <li>Feature 12</li>
+                  {pricingPackages.custom.features.slice(0, 4).map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
                 </ul>
+                <button className="view-details-btn" onClick={() => viewPackageDetails('custom')}>
+                  View Details
+                </button>
+                <button className="package-cta">Get Started</button>
+              </div>
+              
+              {/* Hybrid Package */}
+              <div className={`pricing-package ${pricingPackages.hybrid.type}`}>
+                {pricingPackages.hybrid.popular && <div className="popular-tag">Most Popular</div>}
+                <h3>{pricingPackages.hybrid.title}</h3>
+                <div className="package-price">
+                  {pricingPackages.hybrid.price}
+                  <span className="package-price-monthly">{pricingPackages.hybrid.monthlyPrice}</span>
+                </div>
+                <ul className="package-features">
+                  {pricingPackages.hybrid.features.slice(0, 4).map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
+                </ul>
+                <button className="view-details-btn" onClick={() => viewPackageDetails('hybrid')}>
+                  View Details
+                </button>
                 <button className="package-cta">Get Started</button>
               </div>
             </div>
             <div className="pricing-popup-footer">
               <p>Custom packages available upon request. <a href="mailto:dev.doc@outlook.com">Contact me</a> for more information.</p>
             </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Package Details Modal */}
+      {selectedPackage && (
+        <div className="package-details-overlay" onClick={handleBackdropClick}>
+          <div className="package-details-modal" ref={packageDetailsRef}>
+            <div className="package-details-header">
+              <h3>{pricingPackages[selectedPackage].title}</h3>
+              <button className="close-details" onClick={closePackageDetails}>
+                <FaTimes />
+              </button>
+            </div>
+            <div className="package-details-price">
+              {pricingPackages[selectedPackage].price}
+              {pricingPackages[selectedPackage].monthlyPrice && (
+                <span className="package-price-monthly">{pricingPackages[selectedPackage].monthlyPrice}</span>
+              )}
+            </div>
+            <ul className="package-details-features">
+              {pricingPackages[selectedPackage].features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
+            {pricingPackages[selectedPackage].note && (
+              <div className="contract-note">
+                {pricingPackages[selectedPackage].note}
+              </div>
+            )}
+            <button className="package-cta">Get Started</button>
           </div>
         </div>
       )}
