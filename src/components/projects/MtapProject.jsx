@@ -48,8 +48,8 @@ const snippets = {
       {
         icon: <FaExternalLinkAlt />,
         text: "Live Preview",
-        url: "https://unclesmol.github.io/mtapgroup/#home",
-        isButton: true
+        url: "https://unclesmol.github.io/mtapgroup/",
+        isButton: false
       },
       {
         icon: <FaCode />,

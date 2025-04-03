@@ -188,27 +188,12 @@ const About = ({ isVisible, handleNavClick }) => {
         <div className="about-content">
           <div className="about-text" ref={introTextRef}>
             <p>
-              I love bringing ideas to life through code. As a frontend developer, I'm all about creating websites that not only look good but also work smoothly for the people using them. I've spent the last few years diving deep into web technologies and finding ways to make digital experiences better.
+              I love bringing ideas to life through code. As a frontend developer, I'm all about creating websites that not only look good but also work smoothly for the people using them. I started my journey in web development by diving deep into web technologies and finding ways to make digital experiences better, all through self-learning.
             </p>
             <p>
               When I'm working on a project, I try to balance good design with clean code. I'm not just interested in making things that look pretty – I want them to be built on a solid foundation too. I'm always tinkering with new tools and techniques, partly because tech moves so fast, but mostly because I genuinely enjoy it.
             </p>
           </div>
-          
-          {/* <div className="about-stats" ref={statsRef}>
-            <div className="stat">
-              <span className="stat-number accent">3+</span>
-              <span className="stat-label">Years Experience</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number accent">25+</span>
-              <span className="stat-label">Projects Completed</span>
-            </div>
-            <div className="stat">
-              <span className="stat-number accent">15+</span>
-              <span className="stat-label">Happy Clients</span>
-            </div>
-          </div> */}
         </div>
         
         {/* Personal Background */}

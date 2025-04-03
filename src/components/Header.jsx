@@ -75,12 +75,12 @@ const Header = ({ activeSection, handleNavClick }) => {
             </li>
           </ul>
         </nav>
-        
+
         {/* Mobile Menu Toggle */}
         <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
           {mobileMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
-        
+
         {/* Mobile Navigation */}
         <div 
           ref={mobileMenuRef}
