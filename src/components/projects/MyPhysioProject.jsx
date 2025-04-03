@@ -69,12 +69,6 @@ const MyPhysioProject = ({ addToProjectCardsRef, handleShowSnippet }) => {
         text: "Contact Component",
         isButton: true,
         onClick: () => handleShowSnippet('myphysioContact', snippets)
-      },
-      {
-        icon: <FaHospital />,
-        text: "Hours Component",
-        isButton: true,
-        onClick: () => handleShowSnippet('myphysioHours')
       }
     ]
   };

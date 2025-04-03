@@ -32,7 +32,7 @@ const HarveyNortjeProject = ({ addToProjectCardsRef, handleShowSnippet }) => {
     badge: "Web Profile for a law firm company",
     badgeIcon: FaPortrait,
     badgeType: "portfolio",
-    description: "Harvey Nortje Attorneys, founded in 1908 in Emalahleni, Mpumalanga, is a distinguished law firm known for its commitment to providing high-quality legal services. With a rich history and a strong reputation, the firm focuses on building lasting client relationships rooted in trust, confidentiality, and accessibility. Their team of dedicated professionals, supported by a national network of partners, offers expert legal solutions across various sectors. This project represents a complete revamp of their existing website, aimed at enhancing user experience and addressing outdated technologies. The updated site is built using React, ensuring a mobile-responsive design and a modern, user-friendly interface. The redesign resolves previous issues related to outdated technology, providing a seamless and efficient online experience for clients and visitors.",
+    description: "Harvey Nortje Attorneys is a law firm founded in 1908 in Emalahleni, Mpumalanga, RSA. This project is one of my many web upgrades. When I came across the current website this lawfirm uses, i studied the technologies it was running on and found they are pretty much outdated and needed a revamp. The project is an upgrade from Vanilla HTML, CSS and JavaScript to ReactJS and GSAP. now using the much more efficient VDOM Manipulation",
     features: [
       "Interactive UI with smooth transitions",
       "Responsive layout for all devices",
@@ -52,26 +52,14 @@ const HarveyNortjeProject = ({ addToProjectCardsRef, handleShowSnippet }) => {
         isButton: false
       },
       {
-        icon: <FaGithub />,
-        text: "GitHub Repo",
-        url: "https://github.com/UncleSmol/harvey-nortje",
-        isButton: false
-      },
-      {
         icon: <FaCode />,
-        text: "React Component",
+        text: "React Components",
         isButton: true,
         onClick: () => handleShowSnippet('portfolioReact', snippets)
       },
       {
-        icon: <FaLightbulb />,
-        text: "Animation Snippet",
-        isButton: true,
-        onClick: () => handleShowSnippet('portfolioAnimation')
-      },
-      {
         icon: <FaCss3Alt />,
-        text: "CSS Snippet",
+        text: "CSS Snippets",
         isButton: true,
         onClick: () => handleShowSnippet('portfolioCSS')
       }

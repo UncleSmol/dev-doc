@@ -32,12 +32,12 @@ const VillaRomaProject = ({ addToProjectCardsRef, handleShowSnippet }) => {
     badge: "Hospitality",
     badgeIcon: FaHotel,
     badgeType: "environmental",
-    description: "A digital waste management manual for Villa Roma Boutique Hotel. This interactive guide helps hotel staff implement proper waste sorting and disposal practices to improve sustainability.",
+    description: "Villa Roma Boutique Hotel is an antique hotel located in Emalahleni, Mpumalanga, RSA. Recently acquired by the Department of Higher Education and Training, the hotel needed a revamp of their systems to match their current work culture...modern, user-friendly and mobile-friendly. The project focuses on creating a waste management manual that is easy to navigate and provides clear guidelines for waste disposal. The manual includes an interactive reference for staff to quickly identify the correct disposal methods for various waste items.",
     features: [
       "Categorized waste disposal guidelines",
       "Interactive waste sorting reference",
       "Mobile-friendly for staff access anywhere",
-      "Searchable waste items database"
+      // "Searchable waste items database"
     ],
     technologies: [
       { icon: <FaHtml5 />, name: "HTML5" },
