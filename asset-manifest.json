@@ -1,16 +1,20 @@
 {
   "files": {
-    "main.css": "/dev-doc/static/css/main.23024282.css",
-    "main.js": "/dev-doc/static/js/main.929ee8ed.js",
+    "main.css": "/dev-doc/static/css/main.8f8d2267.css",
+    "main.js": "/dev-doc/static/js/main.96c17323.js",
     "static/js/453.05e3bebf.chunk.js": "/dev-doc/static/js/453.05e3bebf.chunk.js",
+    "static/media/mtap-image.jpg": "/dev-doc/static/media/mtap-image.2a0360d146b273d11077.jpg",
+    "static/media/harvey-nortje-image.jpg": "/dev-doc/static/media/harvey-nortje-image.6b50dbb74ddc3ac81c18.jpg",
+    "static/media/physio-image.jpg": "/dev-doc/static/media/physio-image.e67c0abbd006b6ff599b.jpg",
     "static/media/dev-doc-logo.svg": "/dev-doc/static/media/dev-doc-logo.de797792e2f0976ba27c3a47cbad631e.svg",
+    "static/media/villa-roma-image.jpg": "/dev-doc/static/media/villa-roma-image.8ab2bfa3d66381c1f4db.jpg",
     "index.html": "/dev-doc/index.html",
-    "main.23024282.css.map": "/dev-doc/static/css/main.23024282.css.map",
-    "main.929ee8ed.js.map": "/dev-doc/static/js/main.929ee8ed.js.map",
+    "main.8f8d2267.css.map": "/dev-doc/static/css/main.8f8d2267.css.map",
+    "main.96c17323.js.map": "/dev-doc/static/js/main.96c17323.js.map",
     "453.05e3bebf.chunk.js.map": "/dev-doc/static/js/453.05e3bebf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.23024282.css",
-    "static/js/main.929ee8ed.js"
+    "static/css/main.8f8d2267.css",
+    "static/js/main.96c17323.js"
   ]
 }
