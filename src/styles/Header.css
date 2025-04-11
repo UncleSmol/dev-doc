@@ -10,6 +10,7 @@
   z-index: 1000;
   padding: 1rem 0;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  overflow: visible !important
 }
 
 .header .container {
@@ -86,7 +87,6 @@
   cursor: pointer;
   z-index: 1100;
   padding: 0.5rem;
-  
 }
 
 /* Mobile Navigation */
@@ -100,8 +100,12 @@
   height: 100vh;
   background-color: var(--color-background-secondary);
   z-index: 1010;
-  transition: right 0.3s ease;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  -webkit-transition: right 0.3s ease;
+  -moz-transition: right 0.3s ease;
+  -ms-transition: right 0.3s ease;
+  -o-transition: right 0.3s ease;
+  transition: right 0.3s ease;
 }
 
 .mobile-nav.open {
