@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dev-doc/static/css/main.feee46a5.css",
-    "main.js": "/dev-doc/static/js/main.bf723408.js",
+    "main.css": "/dev-doc/static/css/main.eeb10b13.css",
+    "main.js": "/dev-doc/static/js/main.e244a8e2.js",
     "static/js/453.05e3bebf.chunk.js": "/dev-doc/static/js/453.05e3bebf.chunk.js",
     "static/media/physio-image.jpg": "/dev-doc/static/media/physio-image.b713a6c194a4b2a8d64d.jpg",
     "static/media/harvey-nortje-image.jpg": "/dev-doc/static/media/harvey-nortje-image.7fadf4b05e637de1318b.jpg",
@@ -9,12 +9,12 @@
     "static/media/mtap-image.jpg": "/dev-doc/static/media/mtap-image.57efadc8184a25eb3183.jpg",
     "static/media/dev-doc-logo.svg": "/dev-doc/static/media/dev-doc-logo.de797792e2f0976ba27c3a47cbad631e.svg",
     "index.html": "/dev-doc/index.html",
-    "main.feee46a5.css.map": "/dev-doc/static/css/main.feee46a5.css.map",
-    "main.bf723408.js.map": "/dev-doc/static/js/main.bf723408.js.map",
+    "main.eeb10b13.css.map": "/dev-doc/static/css/main.eeb10b13.css.map",
+    "main.e244a8e2.js.map": "/dev-doc/static/js/main.e244a8e2.js.map",
     "453.05e3bebf.chunk.js.map": "/dev-doc/static/js/453.05e3bebf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.feee46a5.css",
-    "static/js/main.bf723408.js"
+    "static/css/main.eeb10b13.css",
+    "static/js/main.e244a8e2.js"
   ]
 }
