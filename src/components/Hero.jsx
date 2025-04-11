@@ -10,6 +10,7 @@ import {
 import { SiTailwindcss, SiCodeium } from 'react-icons/si';
 import '../styles/ThemeAdaptiveIcons.css'; // Import the theme-adaptive CSS
 import '../styles/PricingPopup.css'; // Import the pricing popup styles
+import handlePackageInquiry from '../utils/packageInquiry'; // Import the package inquiry utility
 
 const Hero = ({ isVisible, handleNavClick }) => {
   // State for pricing popup
@@ -54,6 +55,16 @@ const Hero = ({ isVisible, handleNavClick }) => {
     } else if (e.target.classList.contains('package-details-overlay')) {
       closePackageDetails();
     }
+  };
+
+  // Handle the "Get Started" button click to open inquiry form
+  const handleGetStarted = (packageType) => {
+    // Use the imported utility function
+    handlePackageInquiry(pricingPackages[packageType], () => {
+      // Optional callback when inquiry dialog is closed
+      console.log('Inquiry dialog closed for', packageType);
+      togglePricingPopup(); // Close the pricing popup after inquiry
+    });
   };
 
   // Define pricing packages data
@@ -372,10 +383,10 @@ const Hero = ({ isVisible, handleNavClick }) => {
       {/* Pricing Popup */}
       {showPricing && (
         <div className="pricing-popup-overlay" onClick={handleBackdropClick}>
-          <div className="pricing-popup" ref={pricingPopupRef}>
+          <div className="pricing-popup" ref={pricingPopupRef} role="dialog" aria-modal="true" aria-labelledby="pricing-title">
             <div className="pricing-popup-header">
-              <h2>My Services & Pricing</h2>
-              <button className="close-popup" onClick={togglePricingPopup}>
+              <h2 id="pricing-title">My Services & Pricing</h2>
+              <button className="close-popup" onClick={togglePricingPopup} aria-label="Close pricing popup">
                 <FaTimes />
               </button>
             </div>
@@ -392,7 +403,9 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <button className="view-details-btn" onClick={() => viewPackageDetails('landing')}>
                   View Details
                 </button>
-                <button className="package-cta">Get Started</button>
+                <button className="package-cta" onClick={() => handleGetStarted('landing')}>
+                  Get Started
+                </button>
               </div>
               
               {/* Business Website Package */}
@@ -407,7 +420,9 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <button className="view-details-btn" onClick={() => viewPackageDetails('business')}>
                   View Details
                 </button>
-                <button className="package-cta">Get Started</button>
+                <button className="package-cta" onClick={() => handleGetStarted('business')}>
+                  Get Started
+                </button>
               </div>
               
               {/* Custom Website Package */}
@@ -422,7 +437,9 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <button className="view-details-btn" onClick={() => viewPackageDetails('custom')}>
                   View Details
                 </button>
-                <button className="package-cta">Get Started</button>
+                <button className="package-cta" onClick={() => handleGetStarted('custom')}>
+                  Get Started
+                </button>
               </div>
               
               {/* Hybrid Package */}
@@ -441,7 +458,9 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <button className="view-details-btn" onClick={() => viewPackageDetails('hybrid')}>
                   View Details
                 </button>
-                <button className="package-cta">Get Started</button>
+                <button className="package-cta" onClick={() => handleGetStarted('hybrid')}>
+                  Get Started
+                </button>
               </div>
             </div>
             <div className="pricing-popup-footer">
@@ -454,10 +473,10 @@ const Hero = ({ isVisible, handleNavClick }) => {
       {/* Package Details Modal */}
       {selectedPackage && (
         <div className="package-details-overlay" onClick={handleBackdropClick}>
-          <div className="package-details-modal" ref={packageDetailsRef}>
+          <div className="package-details-modal" ref={packageDetailsRef} role="dialog" aria-modal="true" aria-labelledby="details-title">
             <div className="package-details-header">
-              <h3>{pricingPackages[selectedPackage].title}</h3>
-              <button className="close-details" onClick={closePackageDetails}>
+              <h3 id="details-title">{pricingPackages[selectedPackage].title}</h3>
+              <button className="close-details" onClick={closePackageDetails} aria-label="Close details">
                 <FaTimes />
               </button>
             </div>
@@ -477,7 +496,9 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 {pricingPackages[selectedPackage].note}
               </div>
             )}
-            <button className="package-cta">Get Started</button>
+            <button className="package-cta" onClick={() => handleGetStarted(selectedPackage)}>
+              Get Started
+            </button>
           </div>
         </div>
       )}
