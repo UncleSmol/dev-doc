@@ -40,6 +40,7 @@
   font-size: 1.8rem;
   background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -64,8 +65,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 25px;
+
   justify-content: center;
+  place-content: center;
 }
 
 .pricing-package {
@@ -369,9 +371,20 @@
     right: 20px;
     transform: none;
   }
+  
 }
 
 @media (max-width: 768px) {
+
+.pricing-popup {
+  width: 100%;
+  height: 100vh;
+}
+
+.pricing-popup-overlay{
+  width: 100vw;
+}
+
   .pricing-popup-content {
     flex-direction: column;
   }
@@ -398,3 +411,30 @@
   color: var(--accent-color);
   transform: translateY(-3px);
 }
+
+/* Prevent background interactions when popup is open */
+body:has(.pricing-popup-overlay),
+body:has(.package-details-overlay) {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* But allow interactions within the popup */
+.pricing-popup-overlay,
+.package-details-overlay,
+.pricing-popup,
+.package-details-modal,
+.pricing-popup *,
+.package-details-modal * {
+  pointer-events: auto;
+}
+
+/* Improved styling for focus states */
+.pricing-popup button:focus,
+.pricing-popup a:focus,
+.package-details-modal button:focus,
+.package-details-modal a:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+

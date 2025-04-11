@@ -356,7 +356,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
               </a>
               <a href="tel:+27797682474" className="contact-icon">
                 <FaPhone />
-                <span>0797682474</span>
+                <span>Call</span>
               </a>
             </div>
           </div>
