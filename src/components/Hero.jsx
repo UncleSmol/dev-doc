@@ -71,8 +71,8 @@ const Hero = ({ isVisible, handleNavClick }) => {
   const pricingPackages = {
     landing: {
       type: "basic",
-      title: "Landing Page",
-      price: "R2,500",
+      title: "Standard Package",
+      price: "R2,000",
       features: [
         "Single Page Design",
         "Mobile Responsive",
@@ -85,8 +85,8 @@ const Hero = ({ isVisible, handleNavClick }) => {
     },
     business: {
       type: "standard",
-      title: "Business Website",
-      price: "R5,500",
+      title: "Business Package",
+      price: "R3,500",
       features: [
         "Up to 5 Pages",
         "Mobile Responsive",
@@ -101,7 +101,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
     },
     custom: {
       type: "premium",
-      title: "Custom Website",
+      title: "Premium Package",
       price: "R7,000+",
       features: [
         "Full Fledged Fullstack",
@@ -119,8 +119,8 @@ const Hero = ({ isVisible, handleNavClick }) => {
     hybrid: {
       type: "hybrid",
       title: "Hybrid Package",
-      price: "50% off first month",
-      monthlyPrice: "then R1,200/month",
+      price: "20% off first month",
+      monthlyPrice: "then R850/month",
       popular: true,
       features: [
         "Unlimited Revisions",
@@ -128,12 +128,13 @@ const Hero = ({ isVisible, handleNavClick }) => {
         "Priority Support",
         "Unlimited Custom Designs",
         "Unlimited Business Logic",
-        "Unlimited Support",
         "Monthly Performance Reports",
         "SEO Optimization",
-        "24/7 Emergency Support"
+        "Unlimited Email Accounts",
+        "Custom Domain Name",
+        "Web Hosting"
       ],
-      note: "This is a 24-month partnership agreement that provides ongoing development and support. Perfect for businesses looking for a long-term technology partner rather than a one-time service."
+      note: "This is a 12-month partnership agreement that provides ongoing development and support. Perfect for businesses looking for a long-term technology partner rather than a one-time service."
     }
   };
 
@@ -279,7 +280,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
           <h1 ref={titleRef}>NTSAKO 'DOC' KHOZA</h1>
           <h2 ref={subtitleRef}>Frontend Developer</h2>
           <p className="hero-description" ref={descriptionRef}>
-            Hello, I create engaging web applications, systems, and websites with a focus on user experience and modern technologies.
+            Hello, I'm Doc, I build engaging web applications, systems, and websites with a focus on user experience and modern technologies.
           </p>
           
           {/* Skills section integrated into hero */}
@@ -365,7 +366,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <FaGithubSquare className="github-contact" />
                 <span>GitHub</span>
               </a>
-              <a href="tel:+27797682474" className="contact-icon">
+              <a href="tel:+27712696781" className="contact-icon">
                 <FaPhone />
                 <span>Call</span>
               </a>
@@ -391,7 +392,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
               </button>
             </div>
             <div className="pricing-popup-content">
-              {/* Landing Page Package */}
+              {/* Standard Package */}
               <div className={`pricing-package ${pricingPackages.landing.type}`}>
                 <h3>{pricingPackages.landing.title}</h3>
                 <div className="package-price">{pricingPackages.landing.price}</div>
@@ -408,7 +409,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 </button>
               </div>
               
-              {/* Business Website Package */}
+              {/* Business Package */}
               <div className={`pricing-package ${pricingPackages.business.type}`}>
                 <h3>{pricingPackages.business.title}</h3>
                 <div className="package-price">{pricingPackages.business.price}</div>
@@ -425,7 +426,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 </button>
               </div>
               
-              {/* Custom Website Package */}
+              {/* Premium Package */}
               <div className={`pricing-package ${pricingPackages.custom.type}`}>
                 <h3>{pricingPackages.custom.title}</h3>
                 <div className="package-price">{pricingPackages.custom.price}</div>
@@ -464,7 +465,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
               </div>
             </div>
             <div className="pricing-popup-footer">
-              <p>Custom packages available upon request. <a href="mailto:dev.doc@outlook.com">Contact me</a> for more information.</p>
+              <p>The Hybrid package strictly covers Business and Premium packages and  available upon request. <a href="mailto:dev.doc@outlook.com">Contact me</a> for more information.</p>
             </div>
           </div>
         </div>

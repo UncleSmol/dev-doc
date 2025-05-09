@@ -8,6 +8,7 @@ import MtapProject from './projects/MtapProject';
 import VillaRomaProject from './projects/VillaRomaProject';
 import HarveyNortjeProject from './projects/HarveyNortjeProject';
 import MyPhysioProject from './projects/MyPhysioProject';
+import ChefLuuPortfolio from './projects/ChefLuuProject';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -104,6 +105,10 @@ const Projects = ({ isVisible }) => {
             addToProjectCardsRef={addToProjectCardsRef} 
             handleShowSnippet={handleShowSnippet} 
           />
+
+          <ChefLuuPortfolio
+          addToProjectCardsRef={addToProjectCardsRef}
+          handleShowSnippet={handleCloseSnippet}/>
         </div>
       </div>
       
