@@ -67,3 +67,5 @@ const pricingPackages = {
     note: "This is a 12-month partnership agreement that provides ongoing development and support. Perfect for businesses looking for a long-term technology partner rather than a one-time service.",
   },
 };
+
+export default pricingPackages;
