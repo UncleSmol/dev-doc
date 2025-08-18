@@ -1,22 +1,34 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-// eslint-disable-next-line no-unused-vars
-import { 
-  FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub, FaNodeJs, 
-  FaEnvelope, FaLinkedin, FaGithubSquare,
-  FaDatabase, FaBootstrap, FaCode, FaTimes,
-  FaFileExcel, FaPhone
-} from 'react-icons/fa';
-import { SiTailwindcss, SiCodeium } from 'react-icons/si';
-import '../styles/ThemeAdaptiveIcons.css'; // Import the theme-adaptive CSS
-import '../styles/PricingPopup.css'; // Import the pricing popup styles
-import handlePackageInquiry from '../utils/packageInquiry'; // Import the package inquiry utility
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaGithub,
+  FaNodeJs,
+  FaEnvelope,
+  FaLinkedin,
+  FaGithubSquare,
+  FaDatabase,
+  FaBootstrap,
+  FaCode,
+  FaTimes,
+  FaFileExcel,
+  FaPhone,
+} from "react-icons/fa";
+import { SiTailwindcss, SiCodeium } from "react-icons/si";
+import "../styles/ThemeAdaptiveIcons.css";
+import "../styles/PricingPopup.css";
+import ProfilePhoto from "../images/myProfileImage.jpg";
+import pricingPackages from "../shared/PricingPackages";
+import handlePackageInquiry from "../utils/packageInquiry";
 const Hero = ({ isVisible, handleNavClick }) => {
   // State for pricing popup
   const [showPricing, setShowPricing] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  
+
   // Refs for GSAP animations
   const heroRef = useRef(null);
   const titleRef = useRef(null);
@@ -49,93 +61,20 @@ const Hero = ({ isVisible, handleNavClick }) => {
 
   // Close pricing popup when clicking outside
   const handleBackdropClick = (e) => {
-    if (e.target.classList.contains('pricing-popup-overlay')) {
+    if (e.target.classList.contains("pricing-popup-overlay")) {
       setShowPricing(false);
       setSelectedPackage(null);
-    } else if (e.target.classList.contains('package-details-overlay')) {
+    } else if (e.target.classList.contains("package-details-overlay")) {
       closePackageDetails();
     }
   };
 
   // Handle the "Get Started" button click to open inquiry form
   const handleGetStarted = (packageType) => {
-    // Use the imported utility function
     handlePackageInquiry(pricingPackages[packageType], () => {
-      // Optional callback when inquiry dialog is closed
-      console.log('Inquiry dialog closed for', packageType);
-      togglePricingPopup(); // Close the pricing popup after inquiry
+      console.log("Inquiry dialog closed for", packageType);
+      togglePricingPopup();
     });
-  };
-
-  // Define pricing packages data
-  const pricingPackages = {
-    landing: {
-      type: "basic",
-      title: "Standard Package",
-      price: "R2,000",
-      features: [
-        "Single Page Design",
-        "Mobile Responsive",
-        "Contact Form",
-        "Basic SEO Setup",
-        "1 Revision Round",
-        "Fast Loading Time",
-        "Custom Domain Setup"
-      ]
-    },
-    business: {
-      type: "standard",
-      title: "Business Package",
-      price: "R3,500",
-      features: [
-        "Up to 5 Pages",
-        "Mobile Responsive",
-        "Contact Form",
-        "Standard SEO Setup",
-        "Social Media Integration",
-        "Basic Business Logic",
-        "2 Revision Rounds",
-        "1 Month Support",
-        "Google Analytics Setup"
-      ]
-    },
-    custom: {
-      type: "premium",
-      title: "Premium Package",
-      price: "R7,000+",
-      features: [
-        "Full Fledged Fullstack",
-        "Custom Design & Logic",
-        "Security Implementations",
-        "Advanced SEO",
-        "Content Management System",
-        "Performance Optimization",
-        "3 Revision Rounds",
-        "3 Months Support",
-        "Database Integration",
-        "User Authentication"
-      ]
-    },
-    hybrid: {
-      type: "hybrid",
-      title: "Hybrid Package",
-      price: "20% off first month",
-      monthlyPrice: "then R850/month",
-      popular: true,
-      features: [
-        "Unlimited Revisions",
-        "Free Maintenance",
-        "Priority Support",
-        "Unlimited Custom Designs",
-        "Unlimited Business Logic",
-        "Monthly Performance Reports",
-        "SEO Optimization",
-        "Unlimited Email Accounts",
-        "Custom Domain Name",
-        "Web Hosting"
-      ],
-      note: "This is a 12-month partnership agreement that provides ongoing development and support. Perfect for businesses looking for a long-term technology partner rather than a one-time service."
-    }
   };
 
   // GSAP animations when component becomes visible
@@ -143,28 +82,28 @@ const Hero = ({ isVisible, handleNavClick }) => {
     if (isVisible) {
       // Create a timeline for sequential animations
       const tl = gsap.timeline();
-      
+
       // Animate the main elements
       tl.fromTo(
         titleRef.current,
         { opacity: 0, y: -30 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
       );
-      
+
       tl.fromTo(
         subtitleRef.current,
         { opacity: 0, y: -20 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
         "-=0.4" // Start slightly before previous animation ends
       );
-      
+
       tl.fromTo(
         descriptionRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.8, ease: "power2.out" },
         "-=0.2"
       );
-      
+
       // Animate the profile image with a bounce effect
       tl.fromTo(
         imageRef.current,
@@ -172,29 +111,29 @@ const Hero = ({ isVisible, handleNavClick }) => {
         { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" },
         "-=0.6"
       );
-      
+
       // Animate the skills section title
       tl.fromTo(
-        skillsRef.current.querySelector('h3'),
+        skillsRef.current.querySelector("h3"),
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.6 },
         "-=0.4"
       );
-      
+
       // Animate each tech icon with a stagger effect
       tl.fromTo(
-        techIconsRef.current.querySelectorAll('.tech-icon'),
+        techIconsRef.current.querySelectorAll(".tech-icon"),
         { opacity: 0, y: 20 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.4, 
-          stagger: 0.1, 
-          ease: "power1.out" 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          stagger: 0.1,
+          ease: "power1.out",
         },
         "-=0.2"
       );
-      
+
       // Animate the buttons
       tl.fromTo(
         buttonsRef.current,
@@ -202,7 +141,7 @@ const Hero = ({ isVisible, handleNavClick }) => {
         { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
         "-=0.2"
       );
-      
+
       // Animate the contact section
       tl.fromTo(
         contactRef.current,
@@ -210,24 +149,24 @@ const Hero = ({ isVisible, handleNavClick }) => {
         { opacity: 1, duration: 0.8 },
         "-=0.4"
       );
-      
+
       // Add hover animations for tech icons
-      const techIcons = techIconsRef.current.querySelectorAll('.tech-icon');
-      techIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', () => {
+      const techIcons = techIconsRef.current.querySelectorAll(".tech-icon");
+      techIcons.forEach((icon) => {
+        icon.addEventListener("mouseenter", () => {
           gsap.to(icon, { y: -10, duration: 0.3, ease: "power2.out" });
         });
-        
-        icon.addEventListener('mouseleave', () => {
+
+        icon.addEventListener("mouseleave", () => {
           gsap.to(icon, { y: 0, duration: 0.3, ease: "power2.out" });
         });
       });
-      
+
       // Clean up event listeners
       return () => {
-        techIcons.forEach(icon => {
-          icon.removeEventListener('mouseenter', () => {});
-          icon.removeEventListener('mouseleave', () => {});
+        techIcons.forEach((icon) => {
+          icon.removeEventListener("mouseenter", () => {});
+          icon.removeEventListener("mouseleave", () => {});
         });
       };
     }
@@ -242,20 +181,21 @@ const Hero = ({ isVisible, handleNavClick }) => {
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
       );
-      
+
       // Animate each pricing package with a stagger effect
-      const packages = pricingPopupRef.current.querySelectorAll('.pricing-package');
-      
+      const packages =
+        pricingPopupRef.current.querySelectorAll(".pricing-package");
+
       if (packages.length > 0) {
         gsap.fromTo(
           packages,
           { opacity: 0, y: 30 },
-          { 
-            opacity: 1, 
-            y: 0, 
-            duration: 0.5, 
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
             stagger: 0.1,
-            ease: "back.out(1.2)" 
+            ease: "back.out(1.2)",
           }
         );
       }
@@ -274,15 +214,20 @@ const Hero = ({ isVisible, handleNavClick }) => {
   }, [selectedPackage]);
 
   return (
-    <section className="hero" style={{ display: isVisible ? 'block' : 'none' }} ref={heroRef}>
+    <section
+      className="hero"
+      style={{ display: isVisible ? "block" : "none" }}
+      ref={heroRef}
+    >
       <div className="container">
         <div className="hero-content">
           <h1 ref={titleRef}>NTSAKO 'DOC' KHOZA</h1>
           <h2 ref={subtitleRef}>Frontend Developer</h2>
           <p className="hero-description" ref={descriptionRef}>
-            Hello, I'm Doc, I build engaging web applications, systems, and websites with a focus on user experience and modern technologies.
+            Hello, I'm Doc, I build engaging web applications, systems, and
+            websites with a focus on user experience and modern technologies.
           </p>
-          
+
           {/* Skills section integrated into hero */}
           <div className="hero-skills" ref={skillsRef}>
             <h3>My Technologies</h3>
@@ -337,19 +282,27 @@ const Hero = ({ isVisible, handleNavClick }) => {
               </div>
             </div>
           </div>
-          
+
           <div className="hero-buttons" ref={buttonsRef}>
-            <a href="#projects" className="button primary" onClick={(e) => handleNavClick('projects', e)}>
+            <a
+              href="#projects"
+              className="button primary"
+              onClick={(e) => handleNavClick("projects", e)}
+            >
               View My Work
             </a>
-            <a href="#about" className="button secondary" onClick={(e) => handleNavClick('about', e)}>
+            <a
+              href="#about"
+              className="button secondary"
+              onClick={(e) => handleNavClick("about", e)}
+            >
               About Me
             </a>
             <button className="button secondary" onClick={togglePricingPopup}>
               Work With Me?
             </button>
           </div>
-          
+
           {/* Contact section integrated into hero */}
           <div className="hero-contact" ref={contactRef}>
             <h3>Get In Touch</h3>
@@ -358,7 +311,10 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 <FaEnvelope />
                 <span>Email</span>
               </a>
-              <a href="https://www.linkedin.com/in/ntsako-khoza-a42a08356/" className="contact-icon">
+              <a
+                href="https://www.linkedin.com/in/ntsako-khoza-a42a08356/"
+                className="contact-icon"
+              >
                 <FaLinkedin />
                 <span>LinkedIn</span>
               </a>
@@ -374,117 +330,191 @@ const Hero = ({ isVisible, handleNavClick }) => {
           </div>
         </div>
         <div className="hero-image" ref={imageRef}>
-          {/* profile image goes here */}
           <div className="profile-placeholder">
-            <span className="accent">NK</span>
+            <img src={ProfilePhoto} alt="Profile Image of doctor Khoza" />
           </div>
         </div>
       </div>
-      
+
       {/* Pricing Popup */}
       {showPricing && (
         <div className="pricing-popup-overlay" onClick={handleBackdropClick}>
-          <div className="pricing-popup" ref={pricingPopupRef} role="dialog" aria-modal="true" aria-labelledby="pricing-title">
+          <div
+            className="pricing-popup"
+            ref={pricingPopupRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="pricing-title"
+          >
             <div className="pricing-popup-header">
               <h2 id="pricing-title">My Services & Pricing</h2>
-              <button className="close-popup" onClick={togglePricingPopup} aria-label="Close pricing popup">
+              <button
+                className="close-popup"
+                onClick={togglePricingPopup}
+                aria-label="Close pricing popup"
+              >
                 <FaTimes />
               </button>
             </div>
             <div className="pricing-popup-content">
               {/* Standard Package */}
-              <div className={`pricing-package ${pricingPackages.landing.type}`}>
+              <div
+                className={`pricing-package ${pricingPackages.landing.type}`}
+              >
                 <h3>{pricingPackages.landing.title}</h3>
-                <div className="package-price">{pricingPackages.landing.price}</div>
+                <div className="package-price">
+                  {pricingPackages.landing.price}
+                </div>
                 <ul className="package-features">
-                  {pricingPackages.landing.features.slice(0, 4).map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
+                  {pricingPackages.landing.features
+                    .slice(0, 4)
+                    .map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
                 </ul>
-                <button className="view-details-btn" onClick={() => viewPackageDetails('landing')}>
+                <button
+                  className="view-details-btn"
+                  onClick={() => viewPackageDetails("landing")}
+                >
                   View Details
                 </button>
-                <button className="package-cta" onClick={() => handleGetStarted('landing')}>
+                <button
+                  className="package-cta"
+                  onClick={() => handleGetStarted("landing")}
+                >
                   Get Started
                 </button>
               </div>
-              
+
               {/* Business Package */}
-              <div className={`pricing-package ${pricingPackages.business.type}`}>
+              <div
+                className={`pricing-package ${pricingPackages.business.type}`}
+              >
                 <h3>{pricingPackages.business.title}</h3>
-                <div className="package-price">{pricingPackages.business.price}</div>
+                <div className="package-price">
+                  {pricingPackages.business.price}
+                </div>
                 <ul className="package-features">
-                  {pricingPackages.business.features.slice(0, 4).map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
+                  {pricingPackages.business.features
+                    .slice(0, 4)
+                    .map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
                 </ul>
-                <button className="view-details-btn" onClick={() => viewPackageDetails('business')}>
+                <button
+                  className="view-details-btn"
+                  onClick={() => viewPackageDetails("business")}
+                >
                   View Details
                 </button>
-                <button className="package-cta" onClick={() => handleGetStarted('business')}>
+                <button
+                  className="package-cta"
+                  onClick={() => handleGetStarted("business")}
+                >
                   Get Started
                 </button>
               </div>
-              
+
               {/* Premium Package */}
               <div className={`pricing-package ${pricingPackages.custom.type}`}>
                 <h3>{pricingPackages.custom.title}</h3>
-                <div className="package-price">{pricingPackages.custom.price}</div>
+                <div className="package-price">
+                  {pricingPackages.custom.price}
+                </div>
                 <ul className="package-features">
-                  {pricingPackages.custom.features.slice(0, 4).map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
+                  {pricingPackages.custom.features
+                    .slice(0, 4)
+                    .map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
                 </ul>
-                <button className="view-details-btn" onClick={() => viewPackageDetails('custom')}>
+                <button
+                  className="view-details-btn"
+                  onClick={() => viewPackageDetails("custom")}
+                >
                   View Details
                 </button>
-                <button className="package-cta" onClick={() => handleGetStarted('custom')}>
+                <button
+                  className="package-cta"
+                  onClick={() => handleGetStarted("custom")}
+                >
                   Get Started
                 </button>
               </div>
-              
+
               {/* Hybrid Package */}
               <div className={`pricing-package ${pricingPackages.hybrid.type}`}>
-                {pricingPackages.hybrid.popular && <div className="popular-tag">Most Popular</div>}
+                {pricingPackages.hybrid.popular && (
+                  <div className="popular-tag">Most Popular</div>
+                )}
                 <h3>{pricingPackages.hybrid.title}</h3>
                 <div className="package-price">
                   {pricingPackages.hybrid.price}
-                  <span className="package-price-monthly">{pricingPackages.hybrid.monthlyPrice}</span>
+                  <span className="package-price-monthly">
+                    {pricingPackages.hybrid.monthlyPrice}
+                  </span>
                 </div>
                 <ul className="package-features">
-                  {pricingPackages.hybrid.features.slice(0, 4).map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
+                  {pricingPackages.hybrid.features
+                    .slice(0, 4)
+                    .map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
                 </ul>
-                <button className="view-details-btn" onClick={() => viewPackageDetails('hybrid')}>
+                <button
+                  className="view-details-btn"
+                  onClick={() => viewPackageDetails("hybrid")}
+                >
                   View Details
                 </button>
-                <button className="package-cta" onClick={() => handleGetStarted('hybrid')}>
+                <button
+                  className="package-cta"
+                  onClick={() => handleGetStarted("hybrid")}
+                >
                   Get Started
                 </button>
               </div>
             </div>
             <div className="pricing-popup-footer">
-              <p>The Hybrid package strictly covers Business and Premium packages and  available upon request. <a href="mailto:dev.doc@outlook.com">Contact me</a> for more information.</p>
+              <p>
+                The Hybrid package strictly covers Business and Premium packages
+                and available upon request.{" "}
+                <a href="mailto:dev.doc@outlook.com">Contact me</a> for more
+                information.
+              </p>
             </div>
           </div>
         </div>
       )}
-      
+
       {/* Package Details Modal */}
       {selectedPackage && (
         <div className="package-details-overlay" onClick={handleBackdropClick}>
-          <div className="package-details-modal" ref={packageDetailsRef} role="dialog" aria-modal="true" aria-labelledby="details-title">
+          <div
+            className="package-details-modal"
+            ref={packageDetailsRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="details-title"
+          >
             <div className="package-details-header">
-              <h3 id="details-title">{pricingPackages[selectedPackage].title}</h3>
-              <button className="close-details" onClick={closePackageDetails} aria-label="Close details">
+              <h3 id="details-title">
+                {pricingPackages[selectedPackage].title}
+              </h3>
+              <button
+                className="close-details"
+                onClick={closePackageDetails}
+                aria-label="Close details"
+              >
                 <FaTimes />
               </button>
             </div>
             <div className="package-details-price">
               {pricingPackages[selectedPackage].price}
               {pricingPackages[selectedPackage].monthlyPrice && (
-                <span className="package-price-monthly">{pricingPackages[selectedPackage].monthlyPrice}</span>
+                <span className="package-price-monthly">
+                  {pricingPackages[selectedPackage].monthlyPrice}
+                </span>
               )}
             </div>
             <ul className="package-details-features">
@@ -497,7 +527,10 @@ const Hero = ({ isVisible, handleNavClick }) => {
                 {pricingPackages[selectedPackage].note}
               </div>
             )}
-            <button className="package-cta" onClick={() => handleGetStarted(selectedPackage)}>
+            <button
+              className="package-cta"
+              onClick={() => handleGetStarted(selectedPackage)}
+            >
               Get Started
             </button>
           </div>

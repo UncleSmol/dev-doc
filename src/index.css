@@ -1,4 +1,6 @@
-@import './styles/variables.css';
+/* Optional: Include Normalize.css for consistent rendering across browsers */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import "./styles/variables.css";
 
 * {
   box-sizing: border-box;
@@ -12,15 +14,33 @@ html {
   overflow-x: hidden;
   width: 100%;
   position: relative;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbars for WebKit browsers (Chrome, Safari) */
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   margin: 0;
-  font-family: var(--font-family-primary);
+  /* Fallback for font-family if CSS variables are not supported */
+  font-family: var(
+    --font-family-primary,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif
+  );
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-background-primary);
-  color: var(--color-text-primary);
+  /* Fallback for background-color */
+  background-color: var(--color-background-primary, #ffffff);
+  /* Fallback for text color */
+  color: var(--color-text-primary, #333333);
   line-height: 1.5;
   /* Prevent horizontal scrolling */
   overflow-x: hidden;
@@ -30,78 +50,121 @@ body {
 }
 
 /* Ensure all containers respect viewport boundaries */
-.container, 
-section, 
-main, 
-header, 
+.container,
+section,
+main,
+header,
 footer {
   max-width: 100%;
   overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbars for WebKit browsers */
+.container::-webkit-scrollbar,
+section::-webkit-scrollbar,
+main::-webkit-scrollbar,
+header::-webkit-scrollbar,
+footer::-webkit-scrollbar {
+  display: none;
 }
 
 a {
-  color: var(--color-text-accent);
+  /* Fallback for color */
+  color: var(--color-text-accent, #007bff);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  /* Add vendor prefix for older browsers */
+  -webkit-transition: color 0.2s ease; /* Fallback duration */
+  transition: color var(--transition-fast, 0.2s ease);
 }
 
 a:hover {
-  color: var(--color-charcoal-yellow-light);
+  /* Fallback for hover color */
+  color: var(--color-charcoal-yellow-light, #ffc107);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: var(--space-sm);
-  font-weight: var(--font-weight-bold);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* Fallback for margin */
+  margin-bottom: var(--space-sm, 0.5rem);
+  /* Fallback for font-weight */
+  font-weight: var(--font-weight-bold, 700);
 }
 
 h1 {
-  font-size: var(--font-size-xxxl);
+  /* Fallback for font-size */
+  font-size: var(--font-size-xxxl, 2.5rem);
 }
 
 h2 {
-  font-size: var(--font-size-xxl);
+  /* Fallback for font-size */
+  font-size: var(--font-size-xxl, 2rem);
 }
 
 h3 {
-  font-size: var(--font-size-xl);
+  /* Fallback for font-size */
+  font-size: var(--font-size-xl, 1.75rem);
 }
 
 h4 {
-  font-size: var(--font-size-lg);
+  /* Fallback for font-size */
+  font-size: var(--font-size-lg, 1.5rem);
 }
 
 p {
-  margin-bottom: var(--space-md);
+  /* Fallback for margin */
+  margin-bottom: var(--space-md, 1rem);
 }
 
-button, .button {
-  background-color: var(--color-background-accent);
-  color: var(--color-charcoal-black);
+button,
+.button {
+  /* Fallback for background-color */
+  background-color: var(--color-background-accent, #007bff);
+  /* Fallback for text color */
+  color: var(--color-charcoal-black, #000000);
   border: none;
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--border-radius-sm);
-  font-weight: var(--font-weight-medium);
+  /* Fallback for padding */
+  padding: var(--space-xs, 0.5rem) var(--space-md, 1rem);
+  /* Fallback for border-radius */
+  border-radius: var(--border-radius-sm, 0.25rem);
+  /* Fallback for font-weight */
+  font-weight: var(--font-weight-medium, 500);
   cursor: pointer;
-  transition: background-color var(--transition-fast);
+  /* Add vendor prefix for older browsers */
+  -webkit-transition: background-color 0.2s ease; /* Fallback duration */
+  transition: background-color var(--transition-fast, 0.2s ease);
 }
 
-button:hover, .button:hover {
-  background-color: var(--color-charcoal-yellow-light);
+button:hover,
+.button:hover {
+  /* Fallback for hover background-color */
+  background-color: var(--color-charcoal-yellow-light, #ffc107);
 }
 
 .highlight {
-  color: var(--color-text-highlight);
+  /* Fallback for color */
+  color: var(--color-text-highlight, #ff0000);
 }
 
 .accent {
-  color: var(--color-text-accent);
+  /* Fallback for color */
+  color: var(--color-text-accent, #007bff);
 }
 
 code {
-  font-family: var(--font-family-mono);
-  background-color: var(--color-charcoal-black-light);
-  padding: var(--space-xxs) var(--space-xs);
-  border-radius: var(--border-radius-sm);
+  /* Fallback for font-family */
+  font-family: var(--font-family-mono, "Courier New", Courier, monospace);
+  /* Fallback for background-color */
+  background-color: var(--color-charcoal-black-light, #f5f5f5);
+  /* Fallback for padding */
+  padding: var(--space-xxs, 0.25rem) var(--space-xs, 0.5rem);
+  /* Fallback for border-radius */
+  border-radius: var(--border-radius-sm, 0.25rem);
 }
 
 /* For very wide content, add horizontal scrolling only to the specific elements */
@@ -112,11 +175,12 @@ code {
 
 /* Fix for mobile viewport issues */
 @media screen and (max-width: 768px) {
-  html, body {
+  html,
+  body {
     width: 100%;
     overflow-x: hidden;
   }
-  
+
   /* Ensure images don't cause overflow */
   img {
     max-width: 100%;
