@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 import {
+  FaWhatsapp,
   FaHtml5,
   FaCss3Alt,
   FaJs,
@@ -314,24 +315,46 @@ const Hero = ({ isVisible, handleNavClick }) => {
               <a
                 href="https://www.linkedin.com/in/ntsako-khoza-a42a08356/"
                 className="contact-icon"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaLinkedin />
                 <span>LinkedIn</span>
               </a>
-              <a href="https://github.com/UncleSmol" className="contact-icon">
+              <a
+                href="https://github.com/UncleSmol"
+                className="contact-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaGithubSquare className="github-contact" />
                 <span>GitHub</span>
               </a>
-              <a href="tel:+27712696781" className="contact-icon">
+              <a href="tel:+27687180502" className="contact-icon">
                 <FaPhone />
                 <span>Call</span>
+              </a>
+              {/* WhatsApp Contact */}
+              <a
+                href="https://wa.me/27687180502"
+                className="contact-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaWhatsapp />{" "}
+                {/* Make sure to import FaWhatsapp from react-icons/fa */}
+                <span>WhatsApp</span>
               </a>
             </div>
           </div>
         </div>
         <div className="hero-image" ref={imageRef}>
           <div className="profile-placeholder">
-            <img src={ProfilePhoto} alt="Profile Image of doctor Khoza" />
+            <img
+              className="profile-image"
+              src={ProfilePhoto}
+              alt="Profile Image of doctor Khoza"
+            />
           </div>
         </div>
       </div>
