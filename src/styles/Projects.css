@@ -78,6 +78,11 @@
   color: #e91e63;
 }
 
+.project-badge.hospitality {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+}
+
 
 
 .project-title {

@@ -108,7 +108,7 @@ const Projects = ({ isVisible }) => {
 
           <ChefLuuPortfolio
           addToProjectCardsRef={addToProjectCardsRef}
-          handleShowSnippet={handleCloseSnippet}/>
+          handleShowSnippet={handleShowSnippet}/>
         </div>
       </div>
       
