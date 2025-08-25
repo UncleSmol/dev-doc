@@ -3,35 +3,6 @@
   padding: 2rem 0;
 }
 
-
-
-/* Project image classes */
-.mtap-image {
-  background-image: url('https://images.pexels.com/photos/8853499/pexels-photo-8853499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-
-}
-
-.ecommerce-image {
-  background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-}
-
-.waste-management-image {
-  background-image: url('https://images.pexels.com/photos/802221/pexels-photo-802221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-
-}
-
-.task-image {
-  background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-}
-
-.harvey-nortje-image {
-  background-image: url('https://cdn.pixabay.com/photo/2017/06/09/22/56/lady-justice-2388500_960_720.jpg');
-}
-
-.physio-image {
-  background-image: url('https://cdn.pixabay.com/photo/2021/06/13/09/29/stones-6332720_1280.jpg');
-}
-
 .project-content {
   padding: 1.5rem;
   flex-grow: 1;
@@ -82,8 +53,6 @@
   background-color: rgba(255, 152, 0, 0.2);
   color: #ff9800;
 }
-
-
 
 .project-title {
   font-size: 1.5rem;
@@ -197,7 +166,7 @@
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .project-header {
     flex-direction: row;
   }
@@ -207,7 +176,7 @@
   .project-header {
     flex-direction: column;
   }
-  
+
   .project-badge {
     margin-top: 0.5rem;
     align-self: flex-start;

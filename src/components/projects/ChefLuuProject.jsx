@@ -10,7 +10,8 @@ import {
 } from "react-icons/fa";
 import ProjectCard from "../ProjectCard";
 // Using a placeholder image URL since chef-luu-image.jpg doesn't exist
-const chefLuuImage = "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+const chefLuuImage =
+  "https://unclesmol.github.io/chef-luu/static/media/profile-image.67129dd49338e65569e8.jpg";
 
 const ChefLuuProject = ({ addToProjectCardsRef, handleShowSnippet }) => {
   const projectData = {

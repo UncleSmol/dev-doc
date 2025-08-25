@@ -1804,6 +1804,106 @@ const snippets = {
       },
     ],
   },
+  chefLuuAnimation: {
+    title: "Hero Animation",
+    language: "CSS",
+    sections: [
+      {
+        title: "Hero Animation",
+        code: `.hero-image:hover {
+          transform: scale(1.03);
+        }
+        
+        /* Highlights Section */
+        .hero-highlights {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--spacing-lg);
+          margin-top: var(--spacing-xl);
+        }
+        
+        .highlight-item {
+          background-color: var(--color-white);
+          padding: var(--spacing-lg);
+          border-radius: var(--border-radius-md);
+          box-shadow: var(--shadow-md);
+          text-align: center;
+          transition: transform var(--transition-normal);
+        }
+        
+        .highlight-item:hover {
+          transform: translateY(-5px);
+        }
+        
+        .highlight-icon {
+          font-size: var(--font-size-3xl);
+          margin-bottom: var(--spacing-sm);
+        }
+        
+        .highlight-item h3 {
+          font-family: var(--font-primary);
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-primary);
+          margin-bottom: var(--spacing-sm);
+        }
+        
+        .highlight-item p {
+          font-family: var(--font-primary);
+          font-size: var(--font-size-base);
+          color: var(--color-text);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .hero-content {
+            flex-direction: column-reverse;
+            text-align: center;
+          }
+          
+          .hero-cta {
+            justify-content: center;
+          }
+          
+          .hero-image-wrapper {
+            display: none;
+            height: 400px;
+            margin-bottom: var(--spacing-lg);
+          }
+          
+          .hero-highlights {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+          }
+        }`,
+      },
+      {
+        title: "Responsive Media Queries",
+        code: `/* Responsive Design */
+        @media (max-width: 768px) {
+          .hero-content {
+            flex-direction: column-reverse;
+            text-align: center;
+          }
+          
+          .hero-cta {
+            justify-content: center;
+          }
+          
+          .hero-image-wrapper {
+            display: none;
+            height: 400px;
+            margin-bottom: var(--spacing-lg);
+          }
+          
+          .hero-highlights {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+          }
+        }`,
+      },
+    ],
+  },
 };
 
 export default snippets;
